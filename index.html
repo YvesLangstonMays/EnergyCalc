@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Home Energy Cost Estimator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="wrapper">
+    <h1>Home Energy Cost Estimator</h1>
+    <p>RECS 2020 (South Region) • Age + Square Footage • 95% CI</p>
+
+    <div class="input-row">
+      <label>Year Built</label>
+      <input id="year" type="number" placeholder="e.g., 1995" />
+    </div>
+
+    <div class="input-row">
+      <label>Square Feet</label>
+      <input id="sqft" type="number" placeholder="e.g., 1800" />
+    </div>
+
+    <div class="input-row">
+      <label>Local Price Scalar</label>
+      <input id="scalar" type="number" step="0.01" value="1.00" />
+      <small>Use 1.10 if electricity is ~10% higher than RECS average</small>
+    </div>
+
+    <button id="calc">Calculate</button>
+
+    <h2>Results</h2>
+    <div id="result" class="result"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
