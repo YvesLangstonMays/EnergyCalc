@@ -144,30 +144,32 @@ function updateSeasonChart(baseMonthly) {
 // UI wiring
 // ===============================
 
-document.getElementById("calc").addEventListener("click", () => {
-  const year = parseInt(document.getElementById("year").value, 10);
-  const sqft = parseInt(document.getElementById("sqft").value, 10);
-  let scalar = parseFloat(document.getElementById("scalar").value);
+document.addEventListener("DOMContentLoaded", () => {
 
-  if (isNaN(scalar) || scalar <= 0) {
-    scalar = TEXAS_SCALAR;
-  }
+  document.getElementById("calc").addEventListener("click", () => {
+    const year = parseInt(document.getElementById("year").value, 10);
+    const sqft = parseInt(document.getElementById("sqft").value, 10);
+    let scalar = parseFloat(document.getElementById("scalar").value);
 
-  const out = calcAnnual(year, sqft, scalar);
-  const resultDiv = document.getElementById("result");
+    if (isNaN(scalar) || scalar <= 0) scalar = TEXAS_SCALAR;
 
-  if (!out) {
-    resultDiv.innerHTML = "Please enter a valid year and square footage.";
-    return;
-  }
+    const out = calcAnnual(year, sqft, scalar);
+    const resultDiv = document.getElementById("result");
 
-  resultDiv.innerHTML = `
-    <p><strong>Estimated for Texas home</strong></p>
-    <p><strong>Monthly:</strong> $${out.monthly.toFixed(0)}</p>
-    <p><strong>Annual:</strong> $${out.annual.toFixed(0)}</p>
-    <p><strong>95% CI (monthly):</strong> $${out.lo_month.toFixed(0)} – $${out.hi_month.toFixed(0)}</p>
-    <p><strong>95% CI (annual):</strong> $${out.lo.toFixed(0)} – $${out.hi.toFixed(0)}</p>
-  `;
+    if (!out) {
+      resultDiv.innerHTML = "Please enter a valid year and square footage.";
+      return;
+    }
 
-  updateSeasonChart(out.monthly);
+    resultDiv.innerHTML = `
+      <p><strong>Monthly:</strong> $${out.monthly.toFixed(0)}</p>
+      <p><strong>Annual:</strong> $${out.annual.toFixed(0)}</p>
+      <p><strong>95% CI (monthly):</strong> $${out.lo_month.toFixed(0)} – $${out.hi_month.toFixed(0)}</p>
+      <p><strong>95% CI (annual):</strong> $${out.lo.toFixed(0)} – $${out.hi.toFixed(0)}</p>
+    `;
+
+    updateSeasonChart(out.monthly);
+  });
+
 });
+
