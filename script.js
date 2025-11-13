@@ -7,7 +7,7 @@
 const RECS_AVG = 1839;
 
 // Approx Texas scalar vs South average
-const TEXAS_SCALAR = 1.10;
+const TEXAS_SCALAR = 1.30;
 
 // Year built → cost + RSE
 const AGE_DATA = [
